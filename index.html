@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Mastering Ryhthm</title>
+	<!-- 	<link href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.7.6/jquery.fullPage.min.css" rel="stylesheet"> -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.css">
+		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/animatecss/3.5.1/animate.min.css"></link>
+		<link rel="stylesheet" href="main.css">	
+	</head>
+	<body>
+		<div ng-app="rhythmAppPro">
+			<div ng-controller="rhythmProController">
+				<div ng-mousedown="startTime()" ng-mouseup="stopTime()">
+					<h1>Click Me</h1>
+					<h3>{{gameRhythmDisplay}}</h3>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<footer>
+		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.7.6/jquery.fullPage.min.js"></script> -->
+		<script src="http://code.angularjs.org/1.2.0rc1/angular-sanitize.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular-animate.min.js"></script>
+		<script src="index.js"></script>
+	</footer>
+</html>
