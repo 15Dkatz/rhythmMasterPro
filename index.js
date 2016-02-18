@@ -5,8 +5,8 @@ var currentPage=1;
 var page3topage2 = function() {
 	$("#page3").addClass("fadeOut lowZ");
 	$("#page3").removeClass("highZ");
-	$("#page2").removeClass("fadeOut lowZ");
-	$("#page2").addClass("fadeIn show highZ");
+	$("#page2").removeClass("lowZ");
+	$("#page2").addClass("highZ");
 	currentPage=2;
 }
 
@@ -121,7 +121,7 @@ rhythmAppPro.controller("rhythmProController", function($scope) {
 			// userDisplay=true;
 			currentPage=3;
 			console.log(currentPage, "cp3");
-			$("#page2").addClass("animated fadeOut lowZ");
+			$("#page2").addClass("lowZ");
 			$("#page2").removeClass("highZ");
 			$("#page3").removeClass("fadeOut");
 			$("#page3").addClass("animated fadeIn show highZ");

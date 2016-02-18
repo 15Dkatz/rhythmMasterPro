@@ -80,6 +80,10 @@ body {
 	line-height: 200%;
 }
 
+#page3 {
+	bottom: 22.5%;
+}
+
 .directions {
 	font-size: 3rem;
 }
@@ -110,15 +114,32 @@ body {
 	z-index: 1;
 }
 
+.levelDirections {
+	margin: 2%;
+}
+
 .button {
-	font-size: 3rem;
+	width: 40%;
+	/*left: 30%;*/
+	font-size: 2.5rem;
+	border: 2.5px;
+	border-style: solid;
+	border-radius: 5px;
+	border-color: #fff;
+	margin: 1%;
+	/*margin-top: 5%;*/
+	padding: 1%;
+	/*margin-left: 30%;*/
+	/*left: 40%;*/
+	transform: translateX(71.5%);
+	/*font-weight: bold;*/
 }
 
 #gameRhythmDisplay, #test {
 	font-family: "Rhyth";
 	width: 80%;
 	margin-left: 10%;
-	font-size: 3.5rem;
+	font-size: 4.5rem;
 	letter-spacing: 0.1rem;
 }
 
