@@ -1,18 +1,22 @@
-var userDisplay = false;
+// var userDisplay = false;
 var currentPage=1;
 
+
+var page3topage2 = function() {
+	$("#page3").addClass("fadeOut lowZ");
+	$("#page3").removeClass("highZ");
+	$("#page2").removeClass("fadeOut lowZ");
+	$("#page2").addClass("fadeIn show highZ");
+	currentPage=2;
+}
+
+var page1topage2 = function() {
+	$("#page2").addClass("animated fadeIn show");
+	$("#page1").addClass("animated fadeOut");
+	currentPage=2;
+}
+
 $(document).ready(function() {
-	// var currentPage = 1;
-
-	// $(document).click(function() {
-	// 	if (currentPage===1) {
-	// 		// $(".page").addClass("animated fadeOut show");
-	// 		$("#page2").addClass("animated fadeIn show");
-	// 		$("#page1").addClass("animated fadeOut");
-	// 		currentPage+=1;
-	// 	}
-
-	// })
 })
 
 
@@ -21,7 +25,7 @@ var rhythmAppPro = angular.module("rhythmAppPro", []);
 
 rhythmAppPro.controller("rhythmProController", function($scope) {
 	//48 = whole note, 24 = half note, 12 = quarter note, 6 = eigth note, 3 = sixteenth note. 8-8-8 = quarter triplet.
-	var noteValues = [3, 6, 12, 24, 48];
+	var noteValues = [3, 6, 12, 18, 24, 36, 48];
 
 	$scope.globalLevel=1;
 
@@ -46,12 +50,17 @@ rhythmAppPro.controller("rhythmProController", function($scope) {
 		var randIndex;
 		var total=0;
 		while (limit>0) {
-			//pick random noteValue
-			var randIndex = Math.floor(Math.random()*4);
+			var randIndex = Math.floor(Math.random()*6);
 			if (limit<48) {
-				randIndex = Math.floor(Math.random()*3);
+				randIndex = Math.floor(Math.random()*5);
+			}
+			if (limit<36) {
+				randIndex = Math.floor(Math.random()*4);
 			}
 			if (limit<24) {
+				randIndex = Math.floor(Math.random()*3);
+			}
+			if (limit<18) {
 				randIndex = Math.floor(Math.random()*2);
 			}
 			if (limit<12) {
@@ -82,11 +91,6 @@ rhythmAppPro.controller("rhythmProController", function($scope) {
 		return gameRhythm;
 	}
 
-	//later convert into whole and half note notation.
-	// for (var a=0; a<gameRhythm.length; a++) {
-	// 	$scope.gameRhythmDisplay+=gameRhythm[a]+" ";
-	// }
-	//record the interval between mousedown and mouseup.
 	var timeItv;
 	$scope.time = 0;
 
@@ -115,12 +119,14 @@ rhythmAppPro.controller("rhythmProController", function($scope) {
 			var accuracy = (compareRhythms(gameRhythm, userRhythm)*100).toFixed(2);
 			console.log("accuracy", accuracy);
 			$scope.accuracy=accuracy;
-			userDisplay=true;
+			// userDisplay=true;
+			currentPage=3;
+			console.log(currentPage, "cp3");
 			$("#page2").addClass("animated fadeOut lowZ");
 			$("#page2").removeClass("highZ");
 			$("#page3").removeClass("fadeOut");
 			$("#page3").addClass("animated fadeIn show highZ");
-			currentPage=3;
+			// currentPage=3;
 		}
 
 	}
@@ -128,26 +134,106 @@ rhythmAppPro.controller("rhythmProController", function($scope) {
 	var gameRhythm;
 	$scope.gameRhythmDisplay="";
 
-	var page3topage2 = function() {
-		$("#page3").addClass("fadeOut lowZ");
-		$("#page3").removeClass("highZ");
-		$("#page2").removeClass("fadeOut lowZ");
-		$("#page2").addClass("fadeIn show highZ");
-		currentPage=2;
+
+	// var noteValues = [3, 6, 12, 18, 24, 36, 48];
+
+	var numPairs = {
+		3: "s",
+		6: "e",
+		12: "q",
+		18: "q.",
+		24: "h",
+		36: "h.",
+		48: "w",
+
 	}
+
+	var rhythmDisplay = function(rhythm) {
+		var rhythmDisplay = "$4 \u00A0";
+		for (var i=0; i<rhythm.length; i++) {
+			var letter;
+			if (rhythm[i]===8) {
+				rhythmDisplay+= "Pqqq";
+				i+=2;
+			}
+			else if ((i<rhythm.length-3)&&((rhythm[i]===3)&&(rhythm[i+1]===3)&&(rhythm[i+2]===3)&&(rhythm[i+3]===3))) {
+				rhythmDisplay+="dffg";
+				i+=3;
+			}
+			else if ((i<rhythm.length-2)&&((rhythm[i]===3)&&(rhythm[i+1]===3)&&(rhythm[i+2]===6))) {
+				rhythmDisplay+="dgy";
+				i+=2;
+			}
+			else if ((i<rhythm.length-2)&&((rhythm[i]===6)&&(rhythm[i+1]===3)&&(rhythm[i+2]===3))) {
+				rhythmDisplay+="rdg";
+				i+=2;
+			}
+			else if ((i<rhythm.length-1)&&((rhythm[i]===6)&&(rhythm[i+1]===6))) {
+				rhythmDisplay+="ry";
+				i+=1;
+			} 
+			else if ((i<rhythm.length-1)&&((rhythm[i]===3)&&(rhythm[i+1]===3))) {
+				rhythmDisplay+="dg";
+				i+=1;
+			}       
+			else {
+				letter = numPairs[rhythm[i]];
+				// 15% chance of rest instead of normal note
+				var randRest = Math.random();
+				if (randRest<=.15) {
+					letter = letter.toUpperCase();
+					// remove restNote and go back an index
+					// gameRhythm.splice(i,1);
+					rhythm.splice(i, 1);
+					gameRhythm = rhythm;
+					i-=1;
+					// gameRhythm[i] = 1;
+				}
+				rhythmDisplay += letter;
+				letter = letter.toLowerCase();
+			}
+			
+			switch(letter) {
+				case "e":
+					rhythmDisplay += "\u00A0";
+					break;
+				case "q":
+					rhythmDisplay += "\u00A0\u00A0";
+					break;
+				case "q.":
+					rhythmDisplay += "\u00A0\u00A0\u00A0";
+					break;
+				case "h":
+					rhythmDisplay += "\u00A0\u00A0\u00A0\u00A0";
+					break;
+				case "h.":
+					rhythmDisplay += "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0";
+					break;
+				case "w":
+					rhythmDisplay += "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0";
+					break;
+				default:
+					rhythmDisplay += "";
+					break;	
+			}
+		}
+		console.log(rhythmDisplay, "rd");
+		return rhythmDisplay;
+	}
+
 	
 	$scope.generateGRhythm = function() {
+		//debugging
+		console.log(currentPage, "CP");
 		gameRhythm = generateGameRhythm($scope.globalLevel);
-		$scope.gameRhythmDisplay="";	
+		$scope.gameRhythmDisplay=rhythmDisplay(gameRhythm);	
 		console.log(gameRhythm);
-		for (var a=0; a<gameRhythm.length; a++) {
-			$scope.gameRhythmDisplay+=gameRhythm[a]+" ";
-		}
+		// for (var a=0; a<gameRhythm.length; a++) {
+		// 	$scope.gameRhythmDisplay+=gameRhythm[a]+" ";
+		// }
 		userRhythm = [];
 		if (currentPage===1) {
- 			$("#page2").addClass("animated fadeIn show");
-			$("#page1").addClass("animated fadeOut");
-			currentPage=2;
+ 			page1topage2();
 		} else if (currentPage===3) {
 			page3topage2();
 		}
@@ -157,12 +243,7 @@ rhythmAppPro.controller("rhythmProController", function($scope) {
 		userRhythm=[];
 		page3topage2();
 	}
-	//!!when accuracy shown, clear the userRhythm for a new exercise.
 
-	// var compare = function(rhythm1, rhythm2) {}
-	//figure out method to compare proportions between two arrays
-
-	//not that accurate yet... figure outa  better algorithm.
 	var compareRhythms = function(rhythm1, rhythm2) {
 		var rhythm1Divisor = rhythm1[0];
 		var rhythm1total = 0;
@@ -176,7 +257,6 @@ rhythmAppPro.controller("rhythmProController", function($scope) {
 			rhythm2total+=(rhythm2[r2]/rhythm2Divisor);
 		}
 
-		//accuracy! - round to two decimal places.
 		if (rhythm1total/rhythm2total>0&&rhythm1total/rhythm2total<1) {
 			return rhythm1total/rhythm2total;
 		} else {
@@ -186,12 +266,12 @@ rhythmAppPro.controller("rhythmProController", function($scope) {
 
 
 
-
-
-
 	//debugging
-	console.log(compareRhythms([1,2,3,4], [60000,120000,180000,240000]), "test 1: ~100%");
-	console.log(compareRhythms([1,2,3,4], [8,8,12,25]), "test 2...");
-	console.log(compareRhythms([1,2,3,4], [3,6,9,255]), "test 2...");
+	// $scope.test= rhythmDisplay([8,8,8,3,3,3,3,3,3,6,6,3,3, 3, 3, 6, 3, 3, 3, 6, 6])
+	// console.log(compareRhythms([1,2,3,4], [60000,120000,180000,240000]), "test 1: ~100%");
+	// console.log(compareRhythms([1,2,3,4], [8,8,12,25]), "test 2...");
+	// console.log(compareRhythms([1,2,3,4], [3,6,9,255]), "test 2...");
 
 });
+
+//animation that creates a hovering circle as you hold down the mouse. A sustained pulsation to signal the length of hold.

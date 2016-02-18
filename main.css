@@ -1,3 +1,9 @@
+@font-face {
+	font-family: "Rhyth";
+	src: url("fonts/Rhyth.otf") format("opentype");
+}
+
+
 body {
 	text-align: center;
 	font-size: 2rem;
@@ -7,6 +13,16 @@ body {
 	color: white;
 }
 
+/*Color Collection*/
+/*#fdd835 yellow darken-1
+#43a047 green darken-1
+#fb8c00 orange darken-1
+#f4511e deep-orange darken-1
+#039be5 light-blue darken-1
+#00897b teal darken-1
+#1e88e5 blue darken-1
+#e53935 red darken-1
+#d81b60 pink darken-1*/
 
 .page {
 	width: 100%;
@@ -23,7 +39,10 @@ body {
 #page1 {
 	display: inline-block;
 	/*right: %;*/
-	right: 0%;
+	width: 80%;
+	right: 10%;
+	padding: 10%;
+	line-height: 200%;
 }
 
 
@@ -51,6 +70,18 @@ body {
 
 .lowZ {
 	z-index: 1;
+}
+
+.button {
+	font-size: 2.6rem;
+}
+
+#gameRhythmDisplay, #test {
+	font-family: "Rhyth";
+	width: 80%;
+	margin-left: 10%;
+	font-size: 3.5rem;
+	letter-spacing: 0.1rem;
 }
 
 #drum {
