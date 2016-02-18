@@ -16,11 +16,14 @@
 				<div class="beginDisplay page" id="page1">
 					<div class="pageCollection">	
 						<div class="directions"> The game will display a random rhythm. Click and hold the mouse button to measure your accuracy with the tempo.</div>
-						<div ng-click="changeLevel()">Click to change Level. Level: {{globalLevel}}</div>
+						<div ng-click="changeLevel()" class="levelDirections">Click to change Level. Level: {{globalLevel}}</div>
 						<div ng-click="generateGRhythm()" class="button">Begin</div>
 					</div>
 				</div>
 				<div class="gameDisplay page" id="page2" ng-mousedown="startTime()" ng-mouseup="stopTime()">
+					<div id="pulsateParent">
+						<div id="pulsate"></div>
+					</div>
 					<div class="pageCollection">
 						<div id="gameRhythmDisplay">{{gameRhythmDisplay}}</div>
 						<!-- <div id="test">{{test}}</div> -->
@@ -42,6 +45,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 		<script src="http://code.angularjs.org/1.2.0rc1/angular-sanitize.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular-animate.min.js"></script>
+		<script src="jsLibraries/wad.js"></script>
 		<script src="index.js"></script>
 	</footer>
 </html>

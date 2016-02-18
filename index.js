@@ -16,8 +16,34 @@ var page1topage2 = function() {
 	currentPage=2;
 }
 
+var posX = 0, posY = 0;
+
 $(document).ready(function() {
+	$(document)
+ 	.mousedown(function(f) {
+    	posX = f.pageX;
+    	posY = f.pageY;
+    	console.log(posX, posY);
+	    $("#pulsate").addClass("pulse")
+	    $("#pulsate").css({
+		    left: posX - 37.5,
+		    top: posY - 32.5
+    	})
+	})
+	.mousemove(function(f) {
+	    posX = f.pageX;
+	    posY = f.pageY;
+	    $("#pulsate").css({
+		    left: posX - 37.5,
+		    top: posY - 32.5
+	    })
+	})
+	.mouseup(function() {
+	    $("#pulsate").removeClass("pulse");
+ 	})
 })
+
+
 
 
 
@@ -101,8 +127,21 @@ rhythmAppPro.controller("rhythmProController", function($scope) {
 		$scope.time+=1;
 	}
 
+	//new wad sound
+	var sineSound = new Wad({source: 'sine'})
+
+
 	$scope.startTime = function() {
 		timeItv = setInterval(incrementTime, 10);
+		sineSound.play({
+			volume: 0.9,
+			pitch: 'Ab3',
+			env: {
+				attack: 0,
+				decay: 0.3,
+				sustain: 0.5
+			}
+		});
 	}
 
 	$scope.stopTime = function() {
@@ -112,6 +151,7 @@ rhythmAppPro.controller("rhythmProController", function($scope) {
 		userRhythm.push($scope.time);
 		clearInterval(timeItv);
 		$scope.time=0;
+		sineSound.stop();
 		if (userRhythm.length == gameRhythm.length) {
 			console.log("compare", gameRhythm, "to", userRhythm)
 			console.log("run the compare function!");
@@ -163,6 +203,10 @@ rhythmAppPro.controller("rhythmProController", function($scope) {
 				rhythmDisplay+="dgy";
 				i+=2;
 			}
+			else if ((i<rhythm.length-2)&&((rhythm[i]===3)&&(rhythm[i+1]===6)&&(rhythm[i+2]===6))) {
+				rhythmDisplay+="dty";
+				i+=2;
+			}      	
 			else if ((i<rhythm.length-2)&&((rhythm[i]===6)&&(rhythm[i+1]===3)&&(rhythm[i+2]===3))) {
 				rhythmDisplay+="rdg";
 				i+=2;
@@ -171,10 +215,18 @@ rhythmAppPro.controller("rhythmProController", function($scope) {
 				rhythmDisplay+="ry";
 				i+=1;
 			} 
+			else if ((i<rhythm.length-1)&&((rhythm[i]===6)&&(rhythm[i+1]===3))) {
+				rhythmDisplay+="rg";
+				i+=1;
+			}
+			else if ((i<rhythm.length-1)&&((rhythm[i]===3)&&(rhythm[i+1]===6))) {
+				rhythmDisplay+="dy";
+				i+=1;
+			}
 			else if ((i<rhythm.length-1)&&((rhythm[i]===3)&&(rhythm[i+1]===3))) {
 				rhythmDisplay+="dg";
 				i+=1;
-			}       
+			}           
 			else {
 				letter = numPairs[rhythm[i]];
 				// 15% chance of rest instead of normal note

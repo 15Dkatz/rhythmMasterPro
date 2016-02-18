@@ -13,6 +13,47 @@ body {
 	color: white;
 }
 
+#pulsateParent {
+	position: relative;
+}
+
+#pulsate {
+	position: absolute;
+}
+
+.pulse {
+	width: 75px;
+	height: 75px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #ffffff;
+	background-color: #eeeeee;
+	-webkit-animation: pulsate 0.67s ease-out;
+	   /*-webkit-animation-iteration-count: infinite;*/
+	/*opacity: 0.5;*/
+	-webkit-filter: opacity(.4);
+  	filter: opacity(.4); 
+}
+
+@-webkit-keyframes pulsate {
+	0% {
+        -webkit-transform: scale(0.1, 0.1);
+		-webkit-filter: opacity(.1);
+  		filter: opacity(.1); 
+	}
+	50% {
+		-webkit-filter: opacity(.2);
+  		filter: opacity(.2); 
+	}
+	100% {
+	/* -webkit-transform: scale(1, 1); */
+		-webkit-filter: opacity(.4);
+  		filter: opacity(.4); 
+	}
+}
+
+
 /*Color Collection*/
 /*#fdd835 yellow darken-1
 #43a047 green darken-1
@@ -77,7 +118,7 @@ body {
 	width: 82%;
 	right: 9%;
 	padding: 10%;
-	line-height: 200%;
+	line-height: 180%;
 }
 
 #page3 {
@@ -105,10 +146,6 @@ body {
 .highZ {
 	z-index: 3;
 }
-/*
-.midZ {
-	z-index: 2;
-}*/
 
 .lowZ {
 	z-index: 1;
@@ -116,23 +153,19 @@ body {
 
 .levelDirections {
 	margin: 2%;
+	font-size: 2.3rem;
 }
 
 .button {
 	width: 40%;
-	/*left: 30%;*/
 	font-size: 2.5rem;
 	border: 2.5px;
 	border-style: solid;
 	border-radius: 5px;
 	border-color: #fff;
 	margin: 1%;
-	/*margin-top: 5%;*/
 	padding: 1%;
-	/*margin-left: 30%;*/
-	/*left: 40%;*/
-	transform: translateX(71.5%);
-	/*font-weight: bold;*/
+	transform: translateX(72.5%);
 }
 
 #gameRhythmDisplay, #test {
