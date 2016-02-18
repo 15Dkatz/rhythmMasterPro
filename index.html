@@ -2,7 +2,6 @@
 <html>
 	<head>
 		<title>Mastering Ryhthm</title>
-	<!-- 	<link href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.7.6/jquery.fullPage.min.css" rel="stylesheet"> -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -16,8 +15,7 @@
 			<div ng-controller="rhythmProController">
 				<div class="beginDisplay page" id="page1">
 					<div class="pageCollection">	
-						<!-- <div ng-click="changeLevel()">Change Level: {{globalLevel}}</div> -->
-						<div> The game will display a random rhythm. Click and hold the mouse button to measure your accuracy with the tempo.</div>
+						<div class="directions"> The game will display a random rhythm. Click and hold the mouse button to measure your accuracy with the tempo.</div>
 						<div ng-click="changeLevel()">Click to change Level. Level: {{globalLevel}}</div>
 						<div ng-click="generateGRhythm()" class="button">Begin</div>
 					</div>
@@ -25,15 +23,14 @@
 				<div class="gameDisplay page" id="page2" ng-mousedown="startTime()" ng-mouseup="stopTime()">
 					<div class="pageCollection">
 						<div id="gameRhythmDisplay">{{gameRhythmDisplay}}</div>
-						<!-- <div id="drum">DRUM</div> -->
 						<!-- <div id="test">{{test}}</div> -->
 					</div>	
 				</div>
 				<div class="userDisplay page" id="page3">
 					<div class="pageCollection">
-						<div id="accuracy">{{accuracy}}% on tempo</div>
-						<div ng-click="tryAgain()" class="button">Try Again</div>
+						<div id="accuracy" class="directions">On tempo accuracy: {{accuracy}}%</div>
 						<div ng-click="changeLevel()">Click to change Level. Level: {{globalLevel}}</div>
+						<div ng-click="tryAgain()" class="button">Try Again</div>
 						<div ng-click="generateGRhythm()" class="button">Next</div>
 					</div>
 				</div>
@@ -44,7 +41,6 @@
 	<footer>
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-	<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.7.6/jquery.fullPage.min.js"></script> -->
 		<script src="http://code.angularjs.org/1.2.0rc1/angular-sanitize.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular-animate.min.js"></script>
 		<script src="index.js"></script>

@@ -9,7 +9,7 @@ body {
 	font-size: 2rem;
 
 	/* Randomly select a darken-1 for the color */
-	background: #fb8c00;
+	background: #43a047;
 	color: white;
 }
 
@@ -23,6 +23,41 @@ body {
 #1e88e5 blue darken-1
 #e53935 red darken-1
 #d81b60 pink darken-1*/
+/*.yellow {
+	background-color: #fdd835;
+}
+*/
+.green {
+	background-color: #43a047;
+}
+
+.orange {
+	background-color: #fb8c00;
+}
+
+.deep-orange {
+	background-color: #f4511e;
+}
+
+.light-blue {
+	background-color: #039be5;
+}
+
+.teal {
+	background-color: #1e88e5;
+}
+
+.blue {
+	background-color: #1e88e5;
+}
+
+.red {
+	background-color: #e53935;
+}
+
+.pink {
+	background-color: #d81b60;
+}
 
 .page {
 	width: 100%;
@@ -39,12 +74,15 @@ body {
 #page1 {
 	display: inline-block;
 	/*right: %;*/
-	width: 80%;
-	right: 10%;
+	width: 82%;
+	right: 9%;
 	padding: 10%;
 	line-height: 200%;
 }
 
+.directions {
+	font-size: 3rem;
+}
 
 .pageCollection {
 	width: 100%;
@@ -63,17 +101,17 @@ body {
 .highZ {
 	z-index: 3;
 }
-
+/*
 .midZ {
 	z-index: 2;
-}
+}*/
 
 .lowZ {
 	z-index: 1;
 }
 
 .button {
-	font-size: 2.6rem;
+	font-size: 3rem;
 }
 
 #gameRhythmDisplay, #test {
@@ -85,6 +123,6 @@ body {
 }
 
 #drum {
-	/*margin-bottom: -10px;*/
 	font-size: 5rem;
 }
+

@@ -36,7 +36,6 @@ rhythmAppPro.controller("rhythmProController", function($scope) {
 		$scope.globalLevel++;
 	}
 
-
 	var generateGameRhythm = function(level) {
 		var gameRhythm = [];
 		// var limit = 192;
@@ -221,6 +220,8 @@ rhythmAppPro.controller("rhythmProController", function($scope) {
 		return rhythmDisplay;
 	}
 
+	var randBackground = ["green", "orange", "deep-orange", "light-blue", "teal", "blue", "red", "pink"];
+	var previous=undefined;
 	
 	$scope.generateGRhythm = function() {
 		//debugging
@@ -228,9 +229,17 @@ rhythmAppPro.controller("rhythmProController", function($scope) {
 		gameRhythm = generateGameRhythm($scope.globalLevel);
 		$scope.gameRhythmDisplay=rhythmDisplay(gameRhythm);	
 		console.log(gameRhythm);
-		// for (var a=0; a<gameRhythm.length; a++) {
-		// 	$scope.gameRhythmDisplay+=gameRhythm[a]+" ";
-		// }
+
+		if (previous!=undefined) {
+			$("#page2").removeClass(previous);
+		}
+
+		var randBIndex = Math.floor(Math.random()*randBackground.length);
+		$("#page2").addClass(randBackground[randBIndex]);
+		previous = randBackground[randBIndex];
+
+		
+
 		userRhythm = [];
 		if (currentPage===1) {
  			page1topage2();
