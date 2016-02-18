@@ -14,9 +14,25 @@
 	<body>
 		<div ng-app="rhythmAppPro">
 			<div ng-controller="rhythmProController">
-				<div ng-mousedown="startTime()" ng-mouseup="stopTime()">
-					<h1>Click Me</h1>
-					<h3>{{gameRhythmDisplay}}</h3>
+				<div class="beginDisplay page" id="page1">
+					<div class="pageCollection">	
+						<div ng-click="changeLevel()">Change Level: {{globalLevel}}</div>
+						<div> The game will display a random rhythm. Click and hold the mouse button to measure your accuracy with the tempo.</div>
+						<div ng-click="generateGRhythm()">Begin</div>
+					</div>
+				</div>
+				<div class="gameDisplay page" id="page2">			
+					<div class="pageCollection">
+						<div>{{gameRhythmDisplay}}</div>
+						<div ng-mousedown="startTime()" ng-mouseup="stopTime()" id="drum">DRUM</div>
+					</div>	
+				</div>
+				<div class="userDisplay page" id="page3">
+					<div class="pageCollection">
+						<div id="accuracy">{{accuracy}}% on tempo</div>
+						<div ng-click="tryAgain()" class="button">Try Again</div>
+						<div ng-click="generateGRhythm()" class="button">Next</div>
+					</div>
 				</div>
 			</div>
 		</div>

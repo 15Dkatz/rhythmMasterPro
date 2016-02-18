@@ -1,0 +1,59 @@
+body {
+	text-align: center;
+	font-size: 2rem;
+
+	/* Randomly select a darken-1 for the color */
+	background: #fb8c00;
+	color: white;
+}
+
+
+.page {
+	width: 100%;
+	height: 100%;
+	display: none;
+	position: relative;
+}
+
+#page1, #page2, #page3 {
+	/*display: inline-block;*/
+	position: absolute;
+}
+
+#page1 {
+	display: inline-block;
+	/*right: %;*/
+	right: 0%;
+}
+
+
+.pageCollection {
+	width: 100%;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	/*right: 50%;*/
+	/*transform: translateX(%);*/
+}
+
+.show {
+	display: inline-block;
+	z-index: 5;
+}
+
+.highZ {
+	z-index: 3;
+}
+
+.midZ {
+	z-index: 2;
+}
+
+.lowZ {
+	z-index: 1;
+}
+
+#drum {
+	/*margin-bottom: -10px;*/
+	font-size: 5rem;
+}
